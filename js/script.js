@@ -161,14 +161,12 @@ function startTimer() {
 }
 
 // Scroll & Store User Selection in playerGuessArray
-function select(guessedTrue) {
+function select(guess) {
   // Scroll 80 pixels at a time
   valueY += 80;
   itemContainer.scroll(0, valueY);
   // Add Player Guess to Array
-  return guessedTrue
-    ? playerGuessArray.push("true")
-    : playerGuessArray.push("false");
+  playerGuessArray.push(guess);
 }
 
 // Displays Game Page
@@ -196,7 +194,7 @@ function createEquations() {
     secondNumber = getRandomInt(9);
     const equationValue = firstNumber * secondNumber;
     const equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
-    equationObject = { value: equation, evaluated: "true" };
+    equationObject = { value: equation, evaluated: true };
     equationsArray.push(equationObject);
   }
   // Loop through, mess with the equation results, push to array
@@ -209,7 +207,7 @@ function createEquations() {
     wrongFormat[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
     const formatChoice = getRandomInt(3);
     const equation = wrongFormat[formatChoice];
-    equationObject = { value: equation, evaluated: "false" };
+    equationObject = { value: equation, evaluated: false };
     equationsArray.push(equationObject);
   }
   shuffle(equationsArray);
