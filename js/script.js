@@ -70,7 +70,7 @@ function getSavedBestScores() {
 function updateBestScore() {
   bestScoreArray.forEach((score, index) => {
     // Update Best Score to Corresponding Question Amount
-    if (questionAmount == score.questions) {
+    if (questionAmount === score.questions) {
       // Return Best Score as a Number with one Decimal
       const savedBestScore = Number(bestScoreArray[index].bestScore);
       // Update if the new final score is less or replacing zero
@@ -122,7 +122,7 @@ function scoresToDOM() {
 
 // Stop Timer, Process Results, Go to Score Page
 function checkTime() {
-  if (playerGuessArray.length == questionAmount) {
+  if (playerGuessArray.length === questionAmount) {
     console.log("player guess array:", playerGuessArray);
     clearInterval(timer);
     // Check for wrong guesses, add penalty time
@@ -295,23 +295,12 @@ function getRadioValue() {
 // Form that decides amount of questions
 function selectQuestionAmount(event) {
   event.preventDefault();
-  questionAmount = getRadioValue();
+  questionAmount = Number(getRadioValue());
   console.log("question amount:", questionAmount);
   if (questionAmount) {
     showCountdown();
   }
 }
-
-// startForm.addEventListener("click", () => {
-//   radioContainers.forEach((radioEl) => {
-//     // Remove Selected Label Styling
-//     radioEl.classList.remove("selected-label");
-//     // Add it back if radio input is checked
-//     if (radioEl.children[1].checked) {
-//       radioEl.classList.add("selected-label");
-//     }
-//   });
-// });
 
 radioInputs.forEach((inputEl) => {
   inputEl.addEventListener("change", () => {
