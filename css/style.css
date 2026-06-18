@@ -28,11 +28,11 @@ body {
   border: 1px solid black;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
   width: 530px;
-  height: 750px;
+  min-height: 750px;
   position: relative;
   background: rgba(255, 255, 255, 0.5);
   user-select: none;
-  margin-top: 100px;
+  margin: 1rem 0;
 }
 
 .header {
@@ -48,12 +48,31 @@ body {
   align-items: center;
 }
 
+/* Splash Page -------------------- */
 .card {
-  margin: 5px auto 10px;
-  height: 600px;
+  margin: 0 auto 10px;
 }
 
-/* Splash Page -------------------- */
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid var(--primary-color);
+  background-color: black;
+  color: white;
+  margin-top: 0;
+}
+
+.instructions-heading {
+  text-align: center;
+  text-decoration: underline;
+  margin: 0.5rem 0 0;
+}
+
+.instructions-list {
+  margin: 0.5rem 0 0.5rem;
+  padding-left: 8rem;
+}
+
 input[type="radio"] {
   opacity: 0;
   width: 100%;
@@ -65,8 +84,7 @@ input[type="radio"] {
 }
 
 .selection-container {
-  position: relative;
-  top: 65px;
+  margin-top: 2rem;
 }
 
 .radio-container {
@@ -108,10 +126,6 @@ label {
 
 .best-score span:last-child {
   font-size: 24px;
-}
-
-.selection-footer {
-  top: 134px;
 }
 
 /* Game Page -------------------------- */
@@ -166,7 +180,6 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .item-footer {
@@ -260,10 +273,6 @@ button:active {
 
 /* Media Query: Laptop */
 @media screen and (max-width: 1800px) {
-  .game-container {
-    margin-top: 35px;
-  }
-
   .selected-item {
     top: 380px;
   }
