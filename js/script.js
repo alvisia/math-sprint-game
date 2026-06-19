@@ -38,7 +38,7 @@ let timePlayed = 0;
 let baseTime = 0;
 let penaltyTime = 0;
 let finalTime = 0;
-let finalTimeDisplay = "0.0";
+let finalTimeDisplay = null;
 
 // Scroll
 let valueY = 0;
@@ -46,7 +46,12 @@ let valueY = 0;
 // Refresh Splash Page Best Scores
 function bestScoresToDOM() {
   bestScores.forEach((bestScoreEl, index) => {
-    bestScoreEl.textContent = `${bestScoreArray[index].bestScore}s`;
+    const currentBestScore = bestScoreArray[index].bestScore;
+    if (currentBestScore === null) {
+      bestScoreEl.textContent = "--";
+    } else {
+      bestScoreEl.textContent = `${currentBestScore}s`;
+    }
   });
 }
 
@@ -71,10 +76,9 @@ function updateBestScore() {
   bestScoreArray.forEach((score, index) => {
     // Update Best Score to Corresponding Question Amount
     if (questionAmount === score.questions) {
-      // Return Best Score as a Number with one Decimal
-      const savedBestScore = Number(bestScoreArray[index].bestScore);
-      // Update if the new final score is less or replacing zero
-      if (savedBestScore === 0 || savedBestScore > finalTime) {
+      const savedBestScore = bestScoreArray[index].bestScore;
+      // Update if no best score exists or the new time is faster
+      if (savedBestScore === null || savedBestScore > finalTime) {
         bestScoreArray[index].bestScore = finalTimeDisplay;
       }
     }
