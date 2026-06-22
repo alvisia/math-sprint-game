@@ -8,6 +8,9 @@ const startForm = document.getElementById("start-form");
 const radioContainers = document.querySelectorAll(".radio-container");
 const radioInputs = document.querySelectorAll("input");
 const bestScores = document.querySelectorAll(".best-score-value");
+const unselectedRoundMessage = document.querySelector(
+  ".unselected-round-container",
+);
 // Countdown Page
 const countdown = document.querySelector(".countdown");
 // Game Page
@@ -39,6 +42,7 @@ let baseTime = 0;
 let penaltyTime = 0;
 let finalTime = 0;
 let finalTimeDisplay = null;
+let messageTimerId;
 
 // Scroll
 let valueY = 0;
@@ -301,6 +305,14 @@ function selectQuestionAmount(event) {
   console.log("question amount:", questionAmount);
   if (questionAmount) {
     showCountdown();
+  } else {
+    if (messageTimerId) {
+      clearTimeout(messageTimerId);
+    }
+    unselectedRoundMessage.hidden = false;
+    messageTimerId = setTimeout(() => {
+      unselectedRoundMessage.hidden = true;
+    }, 2000);
   }
 }
 
@@ -313,6 +325,8 @@ radioInputs.forEach((inputEl) => {
     if (inputEl.checked) {
       const selectedContainer = inputEl.closest(".radio-container");
       selectedContainer.classList.add("selected-option");
+      unselectedRoundMessage.hidden = true;
+      clearTimeout(messageTimerId);
     }
   });
 });
